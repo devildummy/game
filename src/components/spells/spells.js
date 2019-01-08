@@ -69,7 +69,7 @@ const answerSpell = async (options) => {
       });
       let isCorrect = false;
       options.answer.forEach((item) => {
-        if ($('.js-answer').val().toLowerCase() === item.toString(10).toLowerCase()) {
+        if ($('.js-answer').val().toLowerCase().replace(/\s/g, '') === item.toString(10).toLowerCase()) {
           isCorrect = true;
         }
       });
