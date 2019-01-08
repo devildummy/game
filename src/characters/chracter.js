@@ -1,16 +1,6 @@
 import $ from 'jquery';
 import spellSound from '../audio/spell.wav';
 import healSound from '../audio/heal.wav';
-import body from '../images/player/body/player_body_1.png';
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-
 
 const loadImg = async img => new Promise((resolve) => {
   img.onload = () => {

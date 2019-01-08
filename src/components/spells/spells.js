@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
-/* eslint-disable new-cap */
 import $ from 'jquery';
 import 'jquery-ui/ui/core';
 import 'jquery-ui/ui/widgets/sortable';
@@ -20,7 +17,7 @@ import Balloons from './balloon/balloon';
 import balloonsTemplate from './balloon/balloon.html';
 import createMatches from './matches/matches';
 import matchesTemplate from './matches/matches.html';
-
+import { bindToKey, unbind } from '../keyInfo/keyinfo';
 
 const answerSpell = async (options) => {
   $('.modal-body').append(options.template);
@@ -46,6 +43,24 @@ const answerSpell = async (options) => {
       backdrop: false,
       keyboard: false,
     });
+    if (!options.additional) {
+      let fixModal = 0;
+      $(options.modal).on('transitionend', () => {
+        fixModal += 1;
+        if (fixModal === 3) {
+          if ($('.js-answer').length && !$('.js-answer').hasClass('d-none')) {
+            bindToKey($('.js-answer'), 'space');
+          }
+          if ($('.btn-primary').length) {
+            bindToKey($('.btn-primary'), 'enter');
+          }
+          if ($('.second-btn').length) {
+            bindToKey($('.second-btn'), 'one');
+          }
+        }
+      });
+    }
+
     $('.js-example').submit(async (e) => {
       e.preventDefault();
       $(options.modal).modal('toggle');
@@ -58,6 +73,7 @@ const answerSpell = async (options) => {
           isCorrect = true;
         }
       });
+      unbind();
       $('body').unbind('click');
       await Checker.render(isCorrect, options.answer);
       resolve([
@@ -158,7 +174,7 @@ class Spells {
       question: 'Расставь в нужном порядке буквы, что бы получилось слово',
       additional: randomArrayFromString(minimizedWord).join(''),
       answer: [minimizedWord],
-      heal: false,
+      heal: true,
     };
     const isTrue = await answerSpell(options);
     return isTrue;
@@ -193,10 +209,10 @@ class Spells {
       template: speechTemplate,
       question: `Произнеси слово ${minimizedWord}`,
       answer: [minimizedWord],
-      heal: false,
+      heal: true,
     };
     $('body').click((e) => {
-      if ($(e.target).hasClass('js-speech')) {
+      if ($(e.target).hasClass('js-speech') || $(e.target).hasClass('fa')) {
         // eslint-disable-next-line no-undef
         const recognition = new webkitSpeechRecognition();
         recognition.lang = 'en-US';
@@ -204,6 +220,8 @@ class Spells {
         $('.js-speech').addClass('btn-danger');
 
         recognition.onresult = (event) => {
+          $('.js-speech').removeClass('btn-danger');
+          $('.js-speech').addClass('btn-light');
           const result = event.results[event.resultIndex];
           $('.js-answer').val(result[0].transcript).submit();
         };

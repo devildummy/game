@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import $ from 'jquery';
 import './player.css';
 import Character from '../chracter';

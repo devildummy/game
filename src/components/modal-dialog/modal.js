@@ -1,17 +1,28 @@
 import $ from 'jquery';
 import './modal.css';
 import template from './modal.html';
+import { bindToKey, unbind } from '../keyInfo/keyinfo';
 
 class Modal {
   static render() {
     $('#main').append(template);
-    $('.spell').hover((e) => {
+    $('.spell').mouseover((e) => {
       if (e.target.classList.contains('spell')) {
-        $(e.target).toggleClass('bg-dark');
+        $(e.target).removeClass('bg-dark');
         if (e.target.classList.contains('attack')) {
-          $(e.target).toggleClass('bg-danger');
+          $(e.target).addClass('bg-danger');
         } else {
-          $(e.target).toggleClass('bg-success');
+          $(e.target).addClass('bg-success');
+        }
+      }
+    });
+    $('.spell').mouseout((e) => {
+      if (e.target.classList.contains('spell')) {
+        $(e.target).addClass('bg-dark');
+        if (e.target.classList.contains('attack')) {
+          $(e.target).removeClass('bg-danger');
+        } else {
+          $(e.target).removeClass('bg-success');
         }
       }
     });
@@ -21,6 +32,17 @@ class Modal {
   static async chooseSpell() {
     const modal = Modal.render();
     return new Promise((resolve) => {
+      let fixModal = 0;
+      $(modal).on('transitionend', () => {
+        fixModal += 1;
+        if (fixModal === 3) {
+          Array.from($('.spell')).forEach((element) => {
+            if ($(element).data('key') !== undefined) {
+              bindToKey(element, $(element).data('key'));
+            }
+          });
+        }
+      });
       $(modal).modal({
         backdrop: false,
         keyboard: false,
@@ -34,6 +56,7 @@ class Modal {
               spell = $($('.spell')[Math.floor(Math.random() * 7)]).data('spell');
             }
             $(modal).remove();
+            unbind();
             resolve(spell);
           });
         }

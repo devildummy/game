@@ -19,6 +19,7 @@ import {
   getPunch,
   heal,
 } from './characters/chracter';
+import { bindToKey, unbind } from './components/keyInfo/keyinfo';
 
 const newAction = async (player, monster) => new Promise(async (resolve) => {
   const spell = await Modal.chooseSpell();
@@ -63,7 +64,6 @@ const newAction = async (player, monster) => new Promise(async (resolve) => {
   resolve();
 });
 const newBattle = async (player, lvl) => {
-  const bonfire = $('.bonfire'); // delete this!
   const monster = new Monster(lvl);
   // eslint-disable-next-line no-param-reassign
   [player.hpBar, monster.hpBar] = Battle.render(player, monster);
@@ -75,57 +75,50 @@ const newBattle = async (player, lvl) => {
     player.engine.render();
     monster.engine.render();
   });
-  $(bonfire).click((e) => {
-    if (e.ctrlKey) {
-      // eslint-disable-next-line no-param-reassign
-      player.hp = -100;
-      Popup.render(player.hpBar, -100);
-    } else {
-      // eslint-disable-next-line no-param-reassign
-      monster.hp = -100;
-      Popup.render(monster.hpBar, -100);
-    }
-  });
   // eslint-disable-next-line no-await-in-loop
   while (monster.hp > 0 && player.hp > 0) {
     // eslint-disable-next-line no-await-in-loop
     await newAction(player, monster);
     // eslint-disable-next-line no-await-in-loop
   }
-  bonfire.off();
   return monster;
 };
-
 const startGame = async () => {
-  $('.bonfire').off();
+  unbind();
   const mainTheme = new Audio(mainThemeSound);
   mainTheme.volume = 0.2;
   mainTheme.load();
-  mainTheme.play();
-  mainTheme.loop = true;
-  window.onblur = () => {
-    mainTheme.pause();
-  };
-  window.onfocus = () => {
-    mainTheme.play();
+  mainTheme.onloadeddata = () => {
+    mainTheme.play().catch(() => {
+      alert('Sorry, Chrome has problems width audio. Just click on the grey screen, go to another tab, and come back');
+    });
+    mainTheme.loop = true;
+    window.onblur = () => {
+      mainTheme.pause();
+    };
+    window.onfocus = () => {
+      mainTheme.play();
+    };
   };
   const startButton = Landing.render();
+  bindToKey($('.btn'), 'enter');
   const player = new Player();
   let level = 1;
   $(startButton).click(async () => {
+    unbind();
     player.name = await NameChooser.setName();
     $('body').append('<div class="level"></div>');
     while (player.hp > 0) {
       $('.level').text(level);
       player.hp = 100;
-      // eslint-disable-next-line no-await-in-loop
       await newBattle(player, level);
-      // eslint-disable-next-line no-await-in-loop
       level += 1;
     }
     await die(player.engine);
     Leaderboard.render(player.name, level - 1);
-    $('.bonfire').click(startGame); // delete this!
+    $('.js-restart').click(startGame);
+    bindToKey($('.js-restart'), 'enter');
+    mainTheme.pause();
   });
 };
 

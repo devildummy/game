@@ -6,3 +6,7 @@
   color: rgb(105, 105, 105);
   font-size: 1.3rem;
 }
+.screenshoot{
+  position: absolute;
+  height: 25%;
+}

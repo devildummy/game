@@ -3,6 +3,7 @@
 body{
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 #main{
   height: 100%;
@@ -12,13 +13,6 @@ body{
   justify-content: center;
   background: rgb(214, 214, 214);
   z-index: 1;
-}
-.bonfire{
-  position: fixed;
-  width: 6rem;
-  bottom: 1rem;
-  left: calc(50% - 3rem);
-  z-index: 2;
 }
 .level{
   position: fixed;

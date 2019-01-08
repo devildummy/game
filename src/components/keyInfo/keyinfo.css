@@ -1,0 +1,10 @@
+.key-info{
+  position: absolute;
+  background: rgb(211, 211, 211);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.7rem;
+  border: 3px solid black;
+  color: black;
+  z-index: 999;
+}
