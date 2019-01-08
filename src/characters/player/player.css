@@ -1,0 +1,18 @@
+canvas{
+  position: absolute;
+}
+.player{
+  position: relative;
+}
+.player .left-arm{
+  z-index: 0;
+}
+.player .right-arm{
+  z-index: 4;
+}
+.player .left-leg{
+  z-index: 1;
+}
+.player .right-leg{
+  z-index: 0;
+}

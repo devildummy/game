@@ -1,0 +1,23 @@
+.letter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  background: rgb(39, 39, 39);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  transition: border 0.6s;
+}
+.js-answer{
+  display: flex;
+}
+.ui-sortable-helper{
+  border: 0.2rem solid red;
+}
+.js-speech{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+}

@@ -1,0 +1,36 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body{
+    height: 100vh;
+    overflow: hidden;
+}
+#main{
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: rgb(214, 214, 214);
+  z-index: 1;
+}
+.bonfire{
+  position: fixed;
+  width: 6rem;
+  bottom: 1rem;
+  left: calc(50% - 3rem);
+  z-index: 2;
+}
+.level{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid black;
+  border-radius: 4rem;
+  width: 4rem;
+  height: 4rem;
+  top: 1rem;
+  left: calc(50% - 2rem);
+  font-size: 2rem;
+  z-index: 2;
+}

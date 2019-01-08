@@ -1,0 +1,52 @@
+.matches{ 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  align-content: space-around; 
+  width: 100%;
+  border: 1px solid grey; 
+  background: rgb(200, 200, 200); 
+} 
+.card-icon{ 
+  position: relative; 
+  align-items: center; 
+  justify-content: center; 
+  display: flex; 
+  background: rgb(170, 170, 170); 
+  width: 20%; 
+  height: 20%; 
+  margin: 2.5%; 
+  font-size: 3rem; 
+  overflow: hidden; 
+} 
+.curtain{ 
+  position: absolute;
+  width: 100%; 
+  height: 100%; 
+  background: blue; 
+} 
+i{ 
+  text-shadow: 0px 0px 1px red; 
+} 
+.end-game{ 
+  position: absolute; 
+  font-size: 10rem; 
+  transition: all 1s; 
+  text-shadow: 0px 0px 5px black; 
+} 
+.win{ 
+  color: rgb(0, 255, 0); 
+} 
+.loose{ 
+  color: red; 
+} 
+.reload{ 
+  bottom: 20%; 
+  position: absolute; 
+  font-size: 4rem; 
+  text-shadow: 0px 0px 5px grey; 
+  background: linear-gradient(#e66465, #9198e5); 
+  border-radius: 2rem; 
+  box-shadow: 0px 2px 5px #000000; 
+  outline: none; 
+}

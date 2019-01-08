@@ -1,0 +1,16 @@
+.card-group{
+  width: 90%;
+}
+.player, .monster{
+  width: 20vw;
+  height: 20vw;
+}
+.player{
+  align-self: flex-start;
+}
+.monster{
+  align-self: flex-end;
+}
+.spell-animation{
+  left: -50%;
+}

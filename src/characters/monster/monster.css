@@ -1,0 +1,24 @@
+canvas{
+  position: absolute;
+}
+.monster{
+  position: relative;
+}
+.body{
+  z-index: 1;
+}
+.head{
+  z-index: 3;
+}
+.monster .left-arm{
+  z-index: 4;
+}
+.monster .right-arm{
+  z-index: 0;
+}
+.monster .left-leg{
+  z-index: 0;
+}
+.monster .right-leg{
+  z-index: 2;
+}

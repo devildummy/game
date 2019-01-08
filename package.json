@@ -1,0 +1,51 @@
+{
+  "name": "game",
+  "version": "0.0.1",
+  "description": "Last task on rsschool's second stage",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "devildummy",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.4",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.1.3",
+    "css-loader": "^2.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "font-awesome": "^4.7.0",
+    "font-awesome-loader": "^1.0.2",
+    "html-loader": "^0.5.5",
+    "jest-css-modules-transform": "^2.1.1",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "popper.js": "^1.14.6",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-jquery-ui": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "html-loader-jest": "^0.2.1",
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "<rootDir>/node_modules/jest-css-modules-transform",
+      "^.+\\.html?$": "html-loader-jest"
+    }
+  }
+}

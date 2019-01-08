@@ -1,0 +1,11 @@
+.row{
+  color: white;
+  font-size: 1.3rem;
+}
+.spell{
+  height: 5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
