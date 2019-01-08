@@ -1,6 +1,13 @@
 const path = require('path');
 
 module.exports = {
+  entry: [
+    './src/index',
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'main.js',
+  },
   module: {
     rules: [
       {
@@ -45,6 +52,6 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, ''),
   },
 };
